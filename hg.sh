@@ -12,7 +12,7 @@ else
 fi
 
 # 定义容器名
-NAME=$HOSTNAME
+NAME=honeygain1
 
 # 自定义字体彩色，read 函数，安装依赖函数
 red(){ echo -e "\033[31m\033[01m$1$2\033[0m"; }
@@ -109,7 +109,7 @@ container_build(){
   # 创建容器
   yellow " Create the honeygain container.\n "
   docker pull honeygain/honeygain
-  docker run -d --name "$NAME" --restart=always honeygain/honeygain -tou-accept -email "$EMAIL" -pass "$PASSWORD" -device honeygainnode
+  docker run -d --name "$NAME" --restart=always honeygain/honeygain -tou-accept -email "$EMAIL" -pass "$PASSWORD" -device $HOSTNAME
   
   # 创建 Towerwatch
   [[ ! $(docker ps -a) =~ watchtower ]] && yellow " Create TowerWatch.\n " && docker run -d --name watchtower --restart always -p 2095:8080 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup >/dev/null 2>&1
