@@ -12,7 +12,7 @@ else
 fi
 
 # 定义容器名
-NAME='honeygain'
+NAME=$HOSTNAME
 
 # 自定义字体彩色，read 函数，安装依赖函数
 red(){ echo -e "\033[31m\033[01m$1$2\033[0m"; }
